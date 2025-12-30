@@ -1,0 +1,41 @@
+ === Mark 8 Parameter Ledger ===
+- N_QUBITS: 6
+- N_CYCLES: 30
+- SAMPLES: 8
+- EPSILON: 0.02
+- H_STRENGTH: 4.0
+- J_INT: 0.25
+- SEED_GLOBAL: 20250101
+- NOISE_P1_VALUES: [0.00010 .. 0.01000] (12 pts)
+- OPTIMIZATION_LEVEL: 0
+- ENVELOPE_MODE: abs
+- TAU_MIN_GREEN: 100.0
+- PLOT: True
+- CSV_LEDGER: None
+- AUDIT_VERBOSE: True
+================================
+NOISE_P1=0.00010 | NOISE_P2=0.00020 | τ_fit=1551.812 | model=exp, beta=1.000, C=0.0000 | MSE=3.499e-06 | AIC=-370.89 | status=GREEN
+NOISE_P1=0.00015 | NOISE_P2=0.00030 | τ_fit=1043.883 | model=exp, beta=1.000, C=0.0000 | MSE=3.557e-06 | AIC=-370.40 | status=GREEN
+NOISE_P1=0.00023 | NOISE_P2=0.00046 | τ_fit=697.414 | model=exp, beta=1.000, C=0.0000 | MSE=3.692e-06 | AIC=-369.28 | status=GREEN
+NOISE_P1=0.00035 | NOISE_P2=0.00070 | τ_fit=364.558 | model=stretched, beta=1.100, C=0.0000 | MSE=3.571e-06 | AIC=-368.28 | status=GREEN
+NOISE_P1=0.00053 | NOISE_P2=0.00107 | τ_fit=251.049 | model=stretched, beta=1.100, C=0.0000 | MSE=3.670e-06 | AIC=-367.46 | status=GREEN
+NOISE_P1=0.00081 | NOISE_P2=0.00162 | τ_fit=172.699 | model=stretched, beta=1.100, C=0.0000 | MSE=3.845e-06 | AIC=-366.07 | status=GREEN
+NOISE_P1=0.00123 | NOISE_P2=0.00247 | τ_fit=118.805 | model=stretched, beta=1.100, C=0.0000 | MSE=4.132e-06 | AIC=-363.91 | status=GREEN
+NOISE_P1=0.00187 | NOISE_P2=0.00375 | τ_fit=81.816 | model=stretched, beta=1.100, C=0.0000 | MSE=4.601e-06 | AIC=-360.68 | status=RED
+NOISE_P1=0.00285 | NOISE_P2=0.00570 | τ_fit=54.648 | model=stretched, beta=1.100, C=0.0270 | MSE=5.616e-06 | AIC=-354.69 | status=RED
+NOISE_P1=0.00433 | NOISE_P2=0.00866 | τ_fit=39.433 | model=stretched, beta=1.050, C=0.0000 | MSE=5.515e-06 | AIC=-355.24 | status=RED
+NOISE_P1=0.00658 | NOISE_P2=0.01316 | τ_fit=26.953 | model=stretched, beta=1.050, C=0.0000 | MSE=4.416e-06 | AIC=-361.91 | status=RED
+NOISE_P1=0.01000 | NOISE_P2=0.02000 | τ_fit=17.566 | model=stretched, beta=1.050, C=0.0211 | MSE=5.821e-06 | AIC=-353.62 | status=RED
+
+=== Audit Ledger ===
+- Points used: 12 / 12
+- log-log slope(τ vs noise): -0.965
+- τ_fit avg/min/max: 368.386 / 17.566 / 1551.812 cycles
+- Envelope model: stretched fraction=0.75, avg beta=1.062, avg C=0.00400
+- Fit MSE avg: 4.328e-06
+- Final half-chain purity avg: 0.5972
+- Envelope decay ratio (last/first): 0.729
+- Energy conservation: FAILED (Floquet drive + depolarizing noise)
+- Quantumness Limit: Purity 0.5972 indicates Coherent regime
+- τ monotonic decrease fraction vs noise: 1.00
+- Status: OK (anti-cheat checks passed)
