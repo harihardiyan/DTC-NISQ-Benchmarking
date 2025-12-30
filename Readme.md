@@ -63,6 +63,25 @@ python mark5_dtc_benchmarking.py
 - `mark5_tau_ledger.csv`: Raw data from the parameter sweep.
 - `plots/`: Visualizations of the decay curves and log-log analysis.
 
+
+# DTC-NISQ-Benchmarking
+
+A quantitative framework for auditing Discrete Time Crystal (DTC) stability on Noisy Intermediate-Scale Quantum (NISQ) devices.
+
+## Overview
+This repository investigates the power-law decay of DTC lifetimes under synchronized depolarizing noise ($P_2 = 2P_1$). 
+
+## Key Metrics
+- **Lifetime ($\tau$):** Extracted via exponential envelope fitting on stroboscopic magnetization.
+- **Audit Logic:** Validates hardware performance against theoretical $P^{-1}$ decay via log-log gradient analysis.
+
+## Core Results
+- **Observed Slope:** -0.979 (Matches Markovian noise theory).
+- **Resource Efficiency:** Utilizes single-pass density matrix snapshots for restricted compute environments.
+
+## Usage
+`pip install -r requirements.txt`
+`python mark5_dtc_benchmarking.py`
 ## Citation/Contact
 **Independent Researcher / AI Handler**
 *Simulations executed using single-pass density matrix snapshots for resource efficiency on restricted hardware environments.*
