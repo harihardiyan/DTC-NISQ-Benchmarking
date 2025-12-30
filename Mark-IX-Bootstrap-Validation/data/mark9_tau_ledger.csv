@@ -1,0 +1,41 @@
+ === Mark 9 Parameter Ledger ===
+- N_QUBITS: 6
+- N_CYCLES: 30
+- SAMPLES: 16
+- EPSILON: 0.02
+- H_STRENGTH: 4.0
+- J_INT: 0.25
+- SEED_GLOBAL: 20250101
+- NOISE_P1_VALUES: [0.00010 .. 0.01000] (12 pts)
+- OPTIMIZATION_LEVEL: 0
+- ENVELOPE_MODE: abs
+- TAU_MIN_GREEN: 100.0
+- PLOT: True
+- CSV_LEDGER: data/mark9_tau_ledger.csv
+- BOOTSTRAP_N: 1000
+- BOOTSTRAP_CI: 0.68
+================================
+NOISE_P1=0.00010 | NOISE_P2=0.00020 | τ=1585.012 ±23.774 | CI68=(1562.379,1609.232) | model=('exp', 1.0, np.float64(0.0)) | MSE=3.267e-06 | status=GREEN
+NOISE_P1=0.00015 | NOISE_P2=0.00030 | τ=1062.826 ±13.397 | CI68=(1049.037,1076.037) | model=('exp', 1.0, np.float64(0.0)) | MSE=3.311e-06 | status=GREEN
+NOISE_P1=0.00023 | NOISE_P2=0.00046 | τ=708.187 ±7.194 | CI68=(700.985,715.337) | model=('exp', 1.0, np.float64(0.0)) | MSE=3.417e-06 | status=GREEN
+NOISE_P1=0.00035 | NOISE_P2=0.00070 | τ=470.230 ±4.199 | CI68=(465.999,474.295) | model=('exp', 1.0, np.float64(0.0)) | MSE=3.656e-06 | status=GREEN
+NOISE_P1=0.00053 | NOISE_P2=0.00107 | τ=311.636 ±2.610 | CI68=(309.001,314.229) | model=('exp', 1.0, np.float64(0.0)) | MSE=4.168e-06 | status=GREEN
+NOISE_P1=0.00081 | NOISE_P2=0.00162 | τ=206.182 ±1.596 | CI68=(204.518,207.816) | model=('exp', 1.0, np.float64(0.0)) | MSE=5.194e-06 | status=GREEN
+NOISE_P1=0.00123 | NOISE_P2=0.00247 | τ=136.520 ±0.980 | CI68=(135.518,137.527) | model=('exp', 1.0, np.float64(0.0)) | MSE=7.060e-06 | status=GREEN
+NOISE_P1=0.00187 | NOISE_P2=0.00375 | τ=90.490 ±0.613 | CI68=(89.883,91.077) | model=('exp', 1.0, np.float64(0.0)) | MSE=9.981e-06 | status=RED
+NOISE_P1=0.00285 | NOISE_P2=0.00570 | τ=60.154 ±0.374 | CI68=(59.793,60.524) | model=('exp', 1.0, np.float64(0.0)) | MSE=1.348e-05 | status=RED
+NOISE_P1=0.00433 | NOISE_P2=0.00866 | τ=40.108 ±0.223 | CI68=(39.876,40.336) | model=('exp', 1.0, np.float64(0.0)) | MSE=1.559e-05 | status=RED
+NOISE_P1=0.00658 | NOISE_P2=0.01316 | τ=26.854 ±0.123 | CI68=(26.732,26.978) | model=('exp', 1.0, np.float64(0.0)) | MSE=1.303e-05 | status=RED
+NOISE_P1=0.01000 | NOISE_P2=0.02000 | τ=18.083 ±0.064 | CI68=(18.020,18.146) | model=('exp', 1.0, np.float64(0.0)) | MSE=4.799e-06 | status=RED
+
+=== Audit Ledger ===
+- Points used: 12 / 12
+- log-log slope(τ vs noise): -0.976
+- τ avg/min/max: 393.024 / 18.083 / 1585.012 cycles
+- Bootstrap τ std avg: 4.596 cycles
+- Fit MSE avg: 7.246e-06
+- Final half-chain purity avg: 0.5982
+- Envelope decay ratio (last/first): 0.731
+- Energy conservation: FAILED (Floquet drive + depolarizing noise)
+- Quantumness Limit: Purity 0.5982 indicates Coherent regime
+- Status: OK (anti-cheat checks passed)
