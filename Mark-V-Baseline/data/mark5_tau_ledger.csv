@@ -1,0 +1,38 @@
+ === Mark 5 Parameter Ledger ===
+- N_QUBITS: 6
+- N_CYCLES: 30
+- SAMPLES: 8
+- EPSILON: 0.02
+- H_STRENGTH: 4.0
+- J_INT: 0.25
+- SEED_GLOBAL: 20250101
+- NOISE_P1_VALUES: [0.00010 .. 0.01000] (12 pts)
+- OPTIMIZATION_LEVEL: 0
+- ENVELOPE_MODE: abs
+- TAU_MIN_GREEN: 100.0
+- PLOT: True
+- CSV_LEDGER: None
+================================
+NOISE_P1=0.00010 | NOISE_P2=0.00020 | τ_fit=1551.812 | C=0.000000 | MSE=3.499e-06 | status=GREEN
+NOISE_P1=0.00015 | NOISE_P2=0.00030 | τ_fit=1043.883 | C=0.000000 | MSE=3.557e-06 | status=GREEN
+NOISE_P1=0.00023 | NOISE_P2=0.00046 | τ_fit=697.414 | C=0.000000 | MSE=3.692e-06 | status=GREEN
+NOISE_P1=0.00035 | NOISE_P2=0.00070 | τ_fit=463.893 | C=0.000000 | MSE=3.989e-06 | status=GREEN
+NOISE_P1=0.00053 | NOISE_P2=0.00107 | τ_fit=307.764 | C=0.000000 | MSE=4.619e-06 | status=GREEN
+NOISE_P1=0.00081 | NOISE_P2=0.00162 | τ_fit=203.939 | C=0.000000 | MSE=5.871e-06 | status=GREEN
+NOISE_P1=0.00123 | NOISE_P2=0.00247 | τ_fit=135.139 | C=0.000000 | MSE=8.143e-06 | status=GREEN
+NOISE_P1=0.00187 | NOISE_P2=0.00375 | τ_fit=89.651 | C=0.000000 | MSE=1.171e-05 | status=RED
+NOISE_P1=0.00285 | NOISE_P2=0.00570 | τ_fit=59.612 | C=0.000000 | MSE=1.605e-05 | status=RED
+NOISE_P1=0.00433 | NOISE_P2=0.00866 | τ_fit=39.780 | C=0.000000 | MSE=1.886e-05 | status=RED
+NOISE_P1=0.00658 | NOISE_P2=0.01316 | τ_fit=26.674 | C=0.000000 | MSE=1.623e-05 | status=RED
+NOISE_P1=0.01000 | NOISE_P2=0.02000 | τ_fit=17.988 | C=0.000000 | MSE=6.583e-06 | status=RED
+
+=== Audit Ledger ===
+- Points used: 12 / 12
+- log-log slope(τ vs noise): -0.973
+- τ avg/min/max: 386.462 / 17.988 / 1551.812 cycles
+- Fit MSE avg: 8.568e-06
+- Final half-chain purity avg: 0.5972
+- Envelope decay ratio (last/first): 0.729
+- Energy conservation: FAILED (Floquet drive + depolarizing noise)
+- Quantumness Limit: Purity 0.5972 indicates Coherent regime
+- Status: OK (baseline checks passed)
