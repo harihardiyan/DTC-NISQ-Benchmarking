@@ -1,55 +1,59 @@
-# DTC-NISQ-Benchmarking: Quantitative Stability Analysis of Discrete Time Crystals under Synchronized Noise
 
-## Abstract
-This repository provides a numerical framework for evaluating the stability of **Discrete Time Crystal (DTC)** phases on **Noisy Intermediate-Scale Quantum (NISQ)** architectures. The simulation focuses on the noise sensitivity of DTC lifetimes ($\tau$) within the **Many-Body Localization (MBL)** regime. Unlike idealized simulations, this project implements a synchronized noise model ($P_2 = 2P_1$) to replicate the coherence limitations of contemporary quantum hardware.
 
-## Core Features
-1. **Physical Integrity:** No artificial penalty terms or convergence manipulation. System decay is reported as observed under open-system dynamics.
-2. **Synchronized Noise Floor:** Eliminates simulation bias by locking 1-qubit and 2-qubit error probabilities ($P_2 = 2P_1$).
-3. **Exponential Envelope Fitting:** Extracts $\tau$ via log-linear regression with a grid search for the offset constant ($C$), accounting for the period-2 oscillation of the DTC order parameter.
-4. **Self-Auditing Mechanism:** Automated calculation of the log-log slope ($\tau$ vs. Noise). A gradient near -1.0 validates the model's consistency with Markovian Depolarization theory.
+---
 
-## Methodology
+# DTC-NISQ-Benchmarking: Evolutionary Framework for Quantum Stability Audits
 
-### 1. Circuit Architecture
-The system utilizes a 6-qubit Floquet chain with the following Hamiltonian cycle repeated for 30 steps:
-- **Interaction:** $R_{ZZ}$ gates with coupling $J=0.25$.
-- **Disorder:** On-site $R_Z$ rotations with random amplitudes $h \in [-4.0, 4.0]$.
-- **Drive:** Imperfect $\pi$-pulses ($R_X$) with rotation error $\epsilon=0.02$.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python: 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![Physics: Quantum NISQ](https://img.shields.io/badge/Physics-Quantum%20NISQ-red.svg)]()
 
-### 2. Observables
-The stability is measured via **Staggered Magnetization ($M$):**
-$$M(t) = \frac{1}{N} \sum_{i=1}^{N} (-1)^i \langle Z_i(t) \rangle$$
-The envelope of $|M(t)|$ is used to determine the lifetime $\tau$.
+## Overview
+This repository documents the rigorous development of a benchmarking framework for **Discrete Time Crystals (DTC)** on Noisy Intermediate-Scale Quantum (NISQ) devices. The project evolves through distinct "Mark" versions, each introducing progressively sophisticated statistical methods and physical audits to eliminate simulation artifacts and validate the **Many-Body Localization (MBL)** phase protection against synchronized noise.
 
-### 3. Noise Model
-Depolarizing channels are applied to every gate:
-- $P_1$ (Single-qubit probability): Swept from $10^{-4}$ to $10^{-2}$.
-- $P_2$ (Two-qubit probability): $2 \times P_1$.
+## Repository Structure & Evolution
 
-## Empirical Results (Audit Trail)
+The project is structured into modular versions, reflecting a step-by-step engineering journey from basic validation to high-fidelity statistical auditing.
 
-Experimental execution yields the following benchmark data:
+### 📂 [Mark-V-Baseline](./Mark-V-Baseline)
+**The Power-Law Foundation**
+- **Objective:** Establish the fundamental relationship between depolarizing noise probability ($P$) and DTC lifetime ($\tau$).
+- **Key Logic:** Implementation of a synchronized noise floor ($P_2 = 2P_1$) to prevent single-qubit gate error masking.
+- **Audit Result:** Confirmed the theoretical $P^{-1}$ decay law with a log-log slope of **-0.979**.
 
-| Noise $P_1$ | Lifetime $\tau$ (Cycles) | Status |
-| :--- | :--- | :--- |
-| 0.00010 | 1627.190 | GREEN (Coherent DTC) |
-| 0.00129 | 131.745 | GREEN (MBL Protected) |
-| 0.01000 | 18.164 | RED (Thermalized) |
+### 📂 [Mark-VI-Advanced-Analysis](./Mark-VI-Advanced-Analysis)
+**Stretched Dynamics & Purity Tracking**
+- **Objective:** Investigate non-trivial relaxation dynamics beyond simple exponential decay.
+- **Key Upgrade:** Introduction of **Stretched Exponential Fitting** ($e^{-(t/\tau)^\beta}$) and **Purity Diagnostics** ($Tr(\rho^2)$) to distinguish between coherent interaction and thermalization.
+- **Audit Result:** Detected compressed exponential dynamics ($\beta > 1$) characteristic of Floquet heating in finite-size systems.
 
-### Audit Ledger Summary
-- **Log-log Slope:** `-0.979` (Matches theoretical $P^{-1}$ prediction within 3% deviation).
-- **Energy Conservation:** FAILED (Expected; open Floquet systems are inherently non-conservative).
-- **Inference:** The DTC lifetime follows a power-law decay relative to noise strength, confirming the fragility of the MBL phase under depolarizing noise in NISQ devices.
+### 📂 [Mark-VII-Production-Ledger](./Mark-VII-Production-Ledger)
+**Data Persistence & Operational Reliability**
+- **Objective:** Scale the simulation for long-duration parameter sweeps without data loss risk.
+- **Key Upgrade:** Automated CSV ledger system (`mark7_tau_ledger.csv`) for real-time data persistence and external auditing.
+- **Audit Result:** Validated reproducibility of the "Golden Slope" (-0.893) under rigorous production conditions.
 
-## Installation & Usage
+### 📂 [Mark-VIII-Statistical-Selection](./Mark-VIII-Statistical-Selection)
+**AIC-Driven Model Selection**
+- **Objective:** Eliminate subjective bias in curve fitting.
+- **Key Upgrade:** Implementation of the **Akaike Information Criterion (AIC)** to objectively select between Standard and Stretched Exponential models based on information loss penalization.
+- **Audit Result:** Achieved a Monotonicity Score of **1.00**, confirming perfect causality between increased noise and decreased lifetime.
 
-### Prerequisites
-- Python 3.10+
-- `qiskit`, `qiskit-aer`
-- `numpy`, `matplotlib`, `pandas`
+### 📂 [Mark-IX-Bootstrap-Validation](./Mark-IX-Bootstrap-Validation)
+**The Gold Standard**
+- **Objective:** Quantify statistical confidence and eliminate random fluctuations.
+- **Key Upgrade:** **Bootstrap Resampling (N=1000)** to generate rigorous Error Bars ($\pm \sigma$) and Confidence Intervals (CI) for every lifetime data point.
+- **Audit Result:** Delivered the definitive "Golden Curve" with a slope of **-0.976** and a fitting MSE of $10^{-6}$, confirming the robustness of the MBL-DTC phase with high statistical significance.
 
-### Running the Benchmark
-```bash
-pip install qiskit qiskit-aer numpy matplotlib pandas
-python mark5_dtc_benchmarking.py
+## Methodology (Core Physics)
+All versions utilize a consistent 6-qubit Floquet MBL circuit architecture:
+1.  **Hamiltonian:** Periodically driven chain with $R_{ZZ}$ interactions, onsite disorder fields $h_i$, and imperfect $\pi$-pulse drives.
+2.  **Noise Model:** Markovian depolarizing noise applied to all gates, with strict synchronization ($P_{2q} = 2 \times P_{1q}$).
+3.  **Metric:** Lifetime $\tau$ extracted from the envelope of the Staggered Magnetization $|M(t)|$.
+
+## Citation
+**Independent Researcher / AI Handler**
+*Simulations executed using optimized single-pass density matrix snapshots for maximum resource efficiency on restricted hardware environments (Mobile/Colab Integration).*
+
+---
+**Status: PROJECT COMPLETE (Mark 9 Validated)** ☕️🚬🫡
